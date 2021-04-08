@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fatal Discovery</title>
+        <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Acme&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="name_page.css">
+    </head>
+    <body>
+        <div>
+            <div class="main-disp">
+                <p id="nameInput"></p>
+                <div>
+                    <button onclick="changeName('A')">A</button>
+                    <button onclick="changeName('B')">B</button>
+                    <button onclick="changeName('C')">C</button>
+                    <button onclick="changeName('D')">D</button>
+                    <button onclick="changeName('E')">E</button>
+                    <button onclick="changeName('F')">F</button>
+                </div>
+                <div>
+                    <button onclick="changeName('G')">G</button>
+                    <button onclick="changeName('H')">H</button>
+                    <button onclick="changeName('I')">I</button>
+                    <button onclick="changeName('J')">J</button>
+                    <button onclick="changeName('K')">K</button>
+                    <button onclick="changeName('L')">L</button>
+                </div>
+                <div>
+                    <button onclick="changeName('M')">M</button>
+                    <button onclick="changeName('N')">N</button>
+                    <button onclick="changeName('O')">O</button>
+                    <button onclick="changeName('P')">P</button>
+                    <button onclick="changeName('Q')">Q</button>
+                    <button onclick="changeName('R')">R</button>
+                </div>
+                <div>
+                    <button onclick="changeName('S')">S</button>
+                    <button onclick="changeName('T')">T</button>
+                    <button onclick="changeName('U')">U</button>
+                    <button onclick="changeName('V')">V</button>
+                    <button onclick="changeName('W')">W</button>
+                    <button onclick="changeName('X')">X</button>
+                </div>
+                <div>
+                    <button onclick="changeName('Y')">Y</button>
+                    <button onclick="changeName('Z')">Z</button>
+                    <button id="button_delete" onclick="deleteName()">DELETE</button>
+                </div>
+            </div>
+            <div id="rightDiv">
+                <form action="choose_gender.html" method="GET">
+                    <input id="namePlayer" name="namePlayer" type="text" hidden=true/>
+                    <button class="next_button" type="submit">Next</button>
+                </form>
+            </div>
+            <div id="leftDiv">
+                <form action="index.html">
+                    <button class="next_button">Back</button>
+                </form>
+            </div>
+            <script>
+                var phrase="";
+                function changeName(value){
+                    phrase += value;
+                    document.getElementById("nameInput").innerHTML = phrase;
+                    document.getElementById("namePlayer").value = phrase;
+                }
+                function deleteName(){
+                    if(phrase.length>0){
+                        phrase = phrase.slice(0, -1);
+                        document.getElementById("nameInput").innerHTML = phrase;
+                        document.getElementById("namePlayer").value = phrase;
+                    }
+                }
+            </script>
+        </div>
+    </body>
+</html>

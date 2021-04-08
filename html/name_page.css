@@ -1,0 +1,72 @@
+html { 
+    background: url("../image/starfields.png"); 
+    background-repeat: repeat;
+}
+
+.main-disp{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+}
+
+button{
+    height: 60px;
+    width: 40px;
+    font-family: Orbitron;
+    font-size: 1em;
+    background-color: transparent;
+    color:#FFF;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #FFF;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.next_button{
+    height:40px;
+    width:100px;
+}
+
+.next_button:hover{
+    color:#000;
+    background-color: #FFF;
+}
+
+#button_delete{
+    height:50px;
+    width:100px;
+}
+
+#nameInput{
+    color: #FFF;
+    font-family: Orbitron;
+    height : 1.7em;
+    font-size: 1.7em;
+}
+
+#leftDiv{
+    float:left;
+}
+
+#rightDiv{
+    float:right;
+}
+
+.main-disp, #leftDiv, #rigthDiv{
+    display: inline;
+}
+
+a:hover{
+    color:#000;
+    background-color: #FFF;
+}
+
+a{
+    text-decoration: none;
+    color:#FFF;
+}

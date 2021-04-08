@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fatal Discovery</title>
+        <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Acme&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="choose_gender.css">
+    </head>
+    <body>
+        <div class="main-disp">
+            <p id="name_here">Hello</p>
+            <form action="game.html" method="GET">
+                <input type="text" name="namePlayer" id="namePlayer" hidden="true"/>
+                <div class="radio-button">
+                    <input type="radio" id="man" name="gender" value="man">
+                    <label for="man">Man</label>
+                    <input type="radio" id="woman" name="gender" value="woman">
+                    <label for="woman">Woman</label>
+                    <input type="radio" id="other" name="gender" value="other" checked>
+                    <label for="other">Other</label>
+                </div>
+                <button type="submit">Next</button>
+            </form>
+            <script>
+                document.getElementById("name_here").innerHTML = "Hello "+window.location.search.substring(12)+" ! Please choose a gender :";
+                document.getElementById("namePlayer").value = window.location.search.substring(12);
+            </script>
+        </div>
+    </body>
+</html>

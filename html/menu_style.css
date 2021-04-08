@@ -1,0 +1,42 @@
+html { 
+  background: url("../image/surface_planet.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.menu-button{
+  margin-bottom: 3em;
+}
+
+.main-class{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+button{
+  text-align: center;
+  color: #000;
+  background-color: transparent;
+  border-style: solid;
+  border-color: #000;
+  font: 3em Orbitron;
+  border-radius: 10px;
+}
+
+button:hover{
+  background-color: #000;
+  color: #CC5500;
+}
+
+audio { display:none;}
+
+h1{
+  font: 4em Orbitron;
+  margin-bottom: 1.2em;
+}
