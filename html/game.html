@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Acme&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="game.css">
         <script src="../javascript/objet.js"></script>
         <script src="../javascript/furniture.js"></script>
         <script src="../javascript/room.js"></script>
@@ -13,12 +14,15 @@
         <script src="../javascript/index.js"></script>
     </head>
     <body>
-        <div id="text-dis">
-            <p>OUi</p>
-        </div>
         <div>
-            <input id="texte" type="text" name="texte"/>
-            <button onClick="updateScreen(document.getElementById('texte').value);">Click</button>
+            <div id="text-dis">
+                <p></p>
+            </div>
+            <div class="main-disp">
+                <p id="smt">></p>
+                <input id="texte" type="text" name="texte"/>
+                <button onClick="updateScreen(document.getElementById('texte').value);">Enter</button>
+            </div>
         </div>
     </body>
 </html>

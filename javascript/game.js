@@ -18,6 +18,21 @@ class Game{
         return this.#player.getName();
     }
 
+    setPlayerRoom(room){
+        for(let i=0;i<this.#room.length;i++){
+            if(this.#room[i].getName()==room)
+                this.#player.setRoom(this.#room[i]);
+        }
+    }
+
+    addObjetPlayer(objet){
+        this.#player.addInventory(objet);
+    }
+
+    removeObjPlayer(objet){
+        this.#player.removeObj(objet);
+    }
+
     getPlayerGender(){
         return this.#player.getGender();
     }
@@ -28,5 +43,13 @@ class Game{
 
     getPlayerRoomName(){
         return this.#player.getRoomName();
+    }
+
+    getPlayerRoom(){
+        return this.#player.getRoom();
+    }
+
+    getPlayerObjets(){
+        return this.#player.getInventory();
     }
 }

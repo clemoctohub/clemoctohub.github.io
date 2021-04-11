@@ -47,7 +47,7 @@ class Player{
         this.#inventory.push(objet);
     }
 
-    /*deleteInventory(objet){
-        
-    }*/
+    removeObj(objet){
+        this.#room.removeObj(objet);
+    }
 }
