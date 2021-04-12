@@ -5,9 +5,7 @@ function start(){
     let name = tokens[0].substring(12);
     let gender = tokens[1].substring(7);
     game = new Game(name,gender);
-    game.addObjetPlayer(new Objet(11,"SAS_key","SAS door",true,"You use the key to enter in the base. The decompression is good"));
-    //addSomeText("In a very distant future, humanity is exploring potential habitable planets through thousands of galaxies. On the planet XF606-A, a scientific research team finds out that there is alien life. They are very excited to be able to study one of the creatures. Two weeks after the first discovery, they catch one alien and bring it back to their base - a little living quarter adapted to human conditions on the planet XF606-A. They record the capture in the database of the base. Three days after their capture, the scientists stop sending any communication. They don't answer any call, cannot be contacted and don't do the week’s summary video of discovery they usually do. The SLC (space life company) which oversees this kind of mission, sends you, "+ name +" to the base on the planet XF606-A to find out what happened.");
-
+    game.addObjetPlayer(new Objet(11,"SAS_key","SAS door",0,"You use the key to enter in the base. The decompression is good"));
 }
 
 function updateScreen(texte){
@@ -190,6 +188,7 @@ function updateScreen(texte){
             }
             break;
         case "help":
+            addSomeText("This game is such as an escape game. You have to resolve task and finish the game. To achieve your mission you can grab object, put object, ask somebody a question (ask + name + what), you can look at the room to have a description, you can inspect furnitures, you can look at your inventory by typping inventory and you can move to another room writting north, south, east or west.");
             break;
         default:
             addSomeText("Wrong input. Please write help if you need help.");

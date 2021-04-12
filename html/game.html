@@ -25,4 +25,11 @@
             </div>
         </div>
     </body>
+    <script>
+        const tokens = window.location.search.split('&');
+        let name = tokens[0].substring(12);
+        addSomeText("Welcome New Adventurer !");
+        addSomeText("In a very distant future, humanity is exploring potential habitable planets through thousands of galaxies. On the planet XF606-A, a scientific research team finds out that there is alien life. They are very excited to be able to study one of the creatures. Two weeks after the first discovery, they catch one alien and bring it back to their base - a little living quarter adapted to human conditions on the planet XF606-A. They record the capture in the database of the base. Three days after their capture, the scientists stop sending any communication. They don't answer any call, cannot be contacted and don't do the week’s summary video of discovery they usually do. The SLC (space life company) which oversees this kind of mission, sends you, '"+ name +"'' to the base on the planet XF606-A to find out what happened.");
+        addSomeText("Enter a command or tap help for any help");
+    </script>
 </html>
