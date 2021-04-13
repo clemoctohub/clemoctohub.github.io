@@ -95,7 +95,7 @@ function updateScreen(texte){
                                     addSomeText("You attack the alien's head but it is too hard. He jumps in you and kill you");
                                     var objDiv = document.getElementById("text-dis");
                                     objDiv.scrollTop = objDiv.scrollHeight;
-                                    setTimeout(() => { window.location.href = "../html/end.html";  }, 3000);
+                                    setTimeout(() => { window.location.href = "../html/end.html";  }, 5000);
                                 }, false);
                                 button4.addEventListener("click", ()=>{
                                     button3.disabled = true;
@@ -114,7 +114,7 @@ function updateScreen(texte){
                                 addSomeText("You don't have any weapon on you. The alien attacks you and kill you");
                                 var objDiv = document.getElementById("text-dis");
                                 objDiv.scrollTop = objDiv.scrollHeight;
-                                setTimeout(() => { window.location.href = "../html/end.html";  }, 3000);
+                                setTimeout(() => { window.location.href = "../html/end.html";  }, 5000);
                             }
                         }, false);
                         
@@ -131,7 +131,7 @@ function updateScreen(texte){
                                 addSomeText("You don't have any food on you. You don't get enough time to move. The alien jumps on you and kill you.");
                                 var objDiv = document.getElementById("text-dis");
                                 objDiv.scrollTop = objDiv.scrollHeight;
-                                setTimeout(() => { window.location.href = "../html/end.html";  }, 3000);
+                                setTimeout(() => { window.location.href = "../html/end.html";  }, 5000);
                             }
                         }, false);
 
@@ -199,7 +199,7 @@ function updateScreen(texte){
                 }
                 else if(objGrab.getName()=="Bodies"){
                     addSomeText("Congratulation you won the game!!!");
-                    setTimeout(() => { window.location.href = "../html/win.html";  }, 3000);
+                    setTimeout(() => { window.location.href = "../html/win.html";  }, 5000);
                 }
                 else{
                     addSomeText("You grab a "+objGrab.getName()+".");
@@ -289,7 +289,7 @@ function updateScreen(texte){
                             addSomeText("You made a mistake by connecting the wires. You better had read the Manual Repair. The robot explosed and you die.");
                             var objDiv = document.getElementById("text-dis");
                             objDiv.scrollTop = objDiv.scrollHeight;
-                            setTimeout(() => { window.location.href = "../html/end.html";  }, 3000);
+                            setTimeout(() => { window.location.href = "../html/end.html";  }, 5000);
                             window.location.href = "../html/end.html";
                         }, false);
 
