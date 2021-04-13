@@ -1,0 +1,47 @@
+html { 
+    background: url("../image/starfields.png"); 
+    background-repeat: repeat;
+}
+
+.main-disp{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    font-family: Orbitron;
+}
+
+button{
+    height:40px;
+    width:300px;
+    font-family: Orbitron;
+    font-size: 1em;
+    background-color: transparent;
+    color:#FFF;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #FFF;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+button:hover{
+    color:#000;
+    background-color: #FFF;
+}
+
+.disp_c{
+    font-family: Orbitron;
+    color: #FFF;
+}
+
+h1{
+    font-size:3em;
+}
+
+p{
+    font-size: 1.5em;
+    margin-bottom: 2em;
+}

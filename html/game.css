@@ -32,6 +32,7 @@ html {
 }
 
 #smt{
+    margin-right: 10px;
     font-family: Orbitron;
     font-size: 1em;
 }
@@ -73,6 +74,7 @@ button{
     font-size: 1.5em;
     font-family: Orbitron;
     border-color: black;
+    box-shadow: 0ch;
     border-width: 3px;
     background-color: transparent;
     margin-left: 40px;
