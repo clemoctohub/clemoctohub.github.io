@@ -280,7 +280,7 @@ function updateScreen(texte){
             }
             break;
         case "help":
-            addSomeTextLine("This game is such as an escape game. You have to resolve task and finish the game.\nTo achieve your mission you can do many actions : \n - Grab object (grab + object name), \n - Put object (put + object name), \n - Ask somebody a question (ask + name of person + what), \n - You can look at the room to have a description (look), \n - You can inspect furnitures (inspect + furnitures), \n You can look at your inventory (inventory), \n And you can move to another room writting : \n  North,\n  South,\n  East,\n  West.");
+            addSomeTextLine("This game is such as an escape game. You have to resolve task and finish the game.\nTo achieve your mission you can do many actions : \n - Grab object (grab + object name), \n - Put object (put + object name), \n - Use an object (use + object's name)\n - Ask somebody a question (ask + name of person + what), \n - You can look at the room to have a description (look), \n - You can inspect furnitures (inspect + furnitures), \n You can look at your inventory (inventory), \n And you can move to another room writting : \n  North,\n  South,\n  East,\n  West.");
             break;
         case "use":
             if(txt[1]==undefined){
