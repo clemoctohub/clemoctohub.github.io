@@ -50,11 +50,15 @@ button{
 }
 
 #leftDiv{
-    float:left;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
 }
 
 #rightDiv{
-    float:right;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }
 
 .main-disp, #leftDiv, #rigthDiv{
@@ -69,4 +73,9 @@ a:hover{
 a{
     text-decoration: none;
     color:#FFF;
+}
+
+p{
+    color:#FFF;
+    font-family: Orbitron;
 }
