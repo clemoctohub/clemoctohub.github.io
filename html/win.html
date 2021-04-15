@@ -9,11 +9,19 @@
     </head>
     <body>
         <div class="main-disp">
-            <h1 class="disp_c">You win !</h1>
+            <h1 id="h1" class="disp_c"></h1>
+            <p id="timer"></p>
             <p class="disp_c">Thank you a lot for playing. Hope you enjoy it !</p>
             <form action="index.html">
                 <button>Go back to Home Page</button>
             </form>
         </div>
+        <script>
+            let data = sessionStorage.getItem('time');
+            let phrase = sessionStorage.getItem('phrase');
+            document.getElementById("timer").innerHTML = "Time : "+data;
+            document.getElementById("h1").innerHTML = "You win "+ phrase +" !";
+            sessionStorage.clear();
+        </script>
     </body>
 </html>

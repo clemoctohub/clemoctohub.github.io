@@ -9,12 +9,20 @@
     </head>
     <body>
         <div class="main-disp">
-            <h1 class="change-font">You are dead !</h1>
+            <h1 id="h1" class="change-font"></h1>
+            <p class="change-font" id="timer"></p>
             <p class="change-font">It seems like you have made the wrong choice...</p>
             <p class="change-font2">Thank you for playing !</p>
             <form action="index.html">
                 <button>Go Back to menu</button>
             </form>
         </div>
+        <script>
+            let data = sessionStorage.getItem('time');
+            let phrase = sessionStorage.getItem('phrase');
+            document.getElementById("timer").innerHTML = "Time : "+data;
+            document.getElementById("h1").innerHTML = phrase;
+            sessionStorage.clear();
+        </script>
     </body>
 </html>

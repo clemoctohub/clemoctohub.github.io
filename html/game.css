@@ -53,6 +53,7 @@ html {
     border-style: solid;
     border-radius: 10px;
     width: 1100px;
+    max-width: 1100px;
     margin-bottom: 50px;
 }
 
@@ -83,4 +84,14 @@ button{
 button:hover{
     background-color: black;
     color: #CC5500;
+}
+
+#timer{
+    font-family: Orbitron;
+    font-size : 1.3em;
+    text-align: center;
+}
+
+#goToLine{
+    white-space: pre;
 }

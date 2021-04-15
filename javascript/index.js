@@ -5,7 +5,7 @@ function start(){
     let name = tokens[0].substring(12);
     let gender = tokens[1].substring(7);
     game = new Game(name,gender);
-    game.addObjetPlayer(new Key(11,"SAS_key","Outside",0,"You use the key to enter in the base. The decompression is good",true));
+    game.addObjetPlayer(new Key(11,"SAS_key","Outside",0,"You use the key to enter in the base. The decompression is good. Go and explore the base",true));
 }
 
 function updateScreen(texte){
@@ -15,7 +15,7 @@ function updateScreen(texte){
 
     switch(txt[0].toLowerCase()){
         case "look":
-            addSomeText(dispInfo());
+            addSomeTextLine(dispInfo());
             break;
         case "north":
             if(game.getPlayerRoom().getDoor()=="north"){
@@ -29,7 +29,7 @@ function updateScreen(texte){
                     if(game.getPlayerRoomName()=="Dining Room"){
                         addSomeText("You enter in the dinig room when suddenly, an alarm is starting. You hear a voice saying : 'Alimentation in critical situation. Need to replace the fuse in the Dining Room'. Go find the fuse and use it !");
                     }
-                    addSomeText(dispInfo());
+                    addSomeTextLine(dispInfo());
                     game.getPlayerRoom().setEntered();
                 }
                 else{
@@ -50,7 +50,7 @@ function updateScreen(texte){
                 dispPlace();
                 let phrase = "";
                 if(game.getPlayerRoom().getEntered()==false){
-                    addSomeText(dispInfo());
+                    addSomeTextLine(dispInfo());
                     game.getPlayerRoom().setEntered();
                 }
                 else{
@@ -72,7 +72,7 @@ function updateScreen(texte){
                 let phrase = "";
                 if(game.getPlayerRoom().getEntered()==false){
                     if(game.getPlayerRoomName()=="Bedroom"){
-                        addSomeText("You enter and smell the worst odour of your life. A noise is coming from your right. You see something standing up."+'\n'
+                        addSomeText("You enter and smell the worst odour of your life. A noise is coming from your right. You see something standing up."+"\r\n"
                         +"It is big and it looks exactly like the alien's description. Indeed, your are facing the alien..!");
                         addSomeText("What do you want to do ?");
                         document.getElementById("texte").readOnly = true;
@@ -92,9 +92,11 @@ function updateScreen(texte){
                                 button3.addEventListener("click", ()=>{
                                     button3.disabled = true;
                                     button4.disabled = true;
-                                    addSomeText("You attack the alien's head but it is too hard. He jumps in you and kill you");
+                                    addSomeText("You attack the alien's head but it is too hard. He jumps on you and kill you");
                                     var objDiv = document.getElementById("text-dis");
                                     objDiv.scrollTop = objDiv.scrollHeight;
+                                    sessionStorage.setItem('time',document.getElementById("timer").textContent);
+                                    sessionStorage.setItem('phrase',"Its head was to solid. The alien killed you.");
                                     setTimeout(() => { window.location.href = "../html/end.html";  }, 5000);
                                 }, false);
                                 button4.addEventListener("click", ()=>{
@@ -111,9 +113,11 @@ function updateScreen(texte){
                                 objDiv.scrollTop = objDiv.scrollHeight;
                             }
                             else{
-                                addSomeText("You don't have any weapon on you. The alien attacks you and kill you");
+                                addSomeText("You don't have any weapon on you. The alien attacks you and kill you.");
                                 var objDiv = document.getElementById("text-dis");
                                 objDiv.scrollTop = objDiv.scrollHeight;
+                                sessionStorage.setItem('phrase',"You didn't have weapon. The alien killed you.");
+                                sessionStorage.setItem('time',document.getElementById("timer").textContent);
                                 setTimeout(() => { window.location.href = "../html/end.html";  }, 5000);
                             }
                         }, false);
@@ -131,6 +135,8 @@ function updateScreen(texte){
                                 addSomeText("You don't have any food on you. You don't get enough time to move. The alien jumps on you and kill you.");
                                 var objDiv = document.getElementById("text-dis");
                                 objDiv.scrollTop = objDiv.scrollHeight;
+                                sessionStorage.setItem('time',document.getElementById("timer").textContent);
+                                sessionStorage.setItem('phrase',"No food on you. The alien killed you.");
                                 setTimeout(() => { window.location.href = "../html/end.html";  }, 5000);
                             }
                         }, false);
@@ -138,7 +144,7 @@ function updateScreen(texte){
                         document.getElementById("text-dis").appendChild(button1);
                         document.getElementById("text-dis").appendChild(button2);
                     }
-                    addSomeText(dispInfo());
+                    addSomeTextLine(dispInfo());
                     game.getPlayerRoom().setEntered();
                 }
                 else{
@@ -159,7 +165,7 @@ function updateScreen(texte){
                 dispPlace();
                 let phrase = "";
                 if(game.getPlayerRoom().getEntered()==false){
-                    addSomeText(dispInfo());
+                    addSomeTextLine(dispInfo());
                     game.getPlayerRoom().setEntered();
                 }
                 else{
@@ -189,6 +195,9 @@ function updateScreen(texte){
             if(game.getPlayerRoomName()=="Research Basement" && txt[1]=="Robot"){
                 addSomeText("You can't grab this.");
             }
+            else if(game.getPlayerObjets().length>=3){
+                addSomeText("You have too much object on you ! Put the object you want on the floor (put + object name). Maximun carrying object : 3");
+            }
             else{
                 var objGrab = findObj(txt[1]);
                 if(txt[1]==undefined){
@@ -199,6 +208,8 @@ function updateScreen(texte){
                 }
                 else if(objGrab.getName()=="Bodies"){
                     addSomeText("Congratulation you won the game!!!");
+                    sessionStorage.setItem('time',document.getElementById("timer").textContent);
+                    sessionStorage.setItem('phrase',game.getPlayerName());
                     setTimeout(() => { window.location.href = "../html/win.html";  }, 5000);
                 }
                 else{
@@ -245,28 +256,31 @@ function updateScreen(texte){
             else if(game.getEtape()<2){
                 addSomeText("You have to repair the Robot")
             }
-            else if(txt[1]=="Robot" && (txt[2]==undefined || txt[2].toLowerCase()!="name" || txt[2].toLowerCase()!="origin" || txt[2].toLowerCase()!="dairy" || txt[2].toLowerCase("alien"))){
-                addSomeText(`Hi ! I'm ready to help what would you like to know ? You can ask me about this topics : 
-                - name,
-                - origin,
-                - dairy,
-                - alien`);
-            }
-            else if(txt[1]=="Robot" && txt[2]=="name"){
+            else if(txt[1]=="Robot" && txt[2].toLowerCase()=="name"){
                 addSomeText("My name is Jarvis. May I help you ?");
             }
-            else if(txt[1]=="Robot" && txt[2]=="origin"){
+            else if(txt[1]=="Robot" && txt[2].toLowerCase()=="origin"){
                 addSomeText("I don't know where I am from sorry. I have a single home and it is this one.");
             }
-            else if(txt[1]=="Robot" && txt[2]=="dairy"){
-                addSomeText("Dois completer cette partie");
+            else if(txt[1]=="Robot" && txt[2].toLowerCase()=="dairy"){
+                addSomeText("Last check of alert : two weeks ago. The alien in the research room managed to escape. He threw its liquid on the crew and bring them somewhere in the base. However there were no exit. The alien must still be there..");
             }
-            else if(txt[1]=="Robot" && txt[2]=="alien"){
-                addSomeText("Here are the information entered about 'alien' topic : Discovered two months ago. The specimen was very little but it started to grow very fast here. It started to create viscous liquid. It is now 2 meters high we secured it in this lab. He is very excited or angry. We have to be careful. It seems to want to eat our food.");
+            else if(txt[1]=="Robot" && txt[2].toLowerCase()=="alien"){
+                addSomeText("Here are the information entered about 'alien' topic : Discovered two months ago. The specimen was very little but it started to grow very fast here. It started to create viscous liquid. It is now 2 meters high we secured it in this lab. He is very excited or angry. We have to be careful. It seems to want to eat our food. He gives off a lot of heat. The heat detector tool should find it. He has a hit on the chest so he is very vulnerable contrary to its head which is very solid.");
+            }
+            else if(txt[1]=="Robot" && txt[2]==undefined){
+                addSomeTextLine(`Hi ! I'm ready to help what would you like to know ?\nYou can ask me about this topics :\n
+                - name,\n
+                - origin,\n
+                - dairy,\n
+                - alien`);
+            }
+            else{
+                addSomeText("Sorry I didn't undertand your question.");
             }
             break;
         case "help":
-            addSomeText("This game is such as an escape game. You have to resolve task and finish the game. To achieve your mission you can grab object, put object, ask somebody a question (ask + name + what), you can look at the room to have a description, you can inspect furnitures, you can look at your inventory by typping inventory and you can move to another room writting north, south, east or west.");
+            addSomeTextLine("This game is such as an escape game. You have to resolve task and finish the game.\nTo achieve your mission you can do many actions : \n - Grab object (grab + object name), \n - Put object (put + object name), \n - Ask somebody a question (ask + name of person + what), \n - You can look at the room to have a description (look), \n - You can inspect furnitures (inspect + furnitures), \n You can look at your inventory (inventory), \n And you can move to another room writting : \n  North,\n  South,\n  East,\n  West.");
             break;
         case "use":
             if(txt[1]==undefined){
@@ -289,8 +303,9 @@ function updateScreen(texte){
                             addSomeText("You made a mistake by connecting the wires. You better had read the Manual Repair. The robot explosed and you die.");
                             var objDiv = document.getElementById("text-dis");
                             objDiv.scrollTop = objDiv.scrollHeight;
+                            sessionStorage.setItem('time',document.getElementById("timer").textContent);
+                            sessionStorage.setItem('phrase',"The robot exploded and killed you.");
                             setTimeout(() => { window.location.href = "../html/end.html";  }, 5000);
-                            window.location.href = "../html/end.html";
                         }, false);
 
                         var button1 = document.createElement("button");
@@ -346,23 +361,23 @@ function dispInfo(){
     let phrase = "";
     phrase += game.getPlayerRoom().getDescription();
     if(game.getPlayerRoom().getFurnitures().length>0){
-        phrase += "There are some furnitures :" ;
+        phrase += "There are some furnitures :\n" ;
         for(let i=0;i<game.getPlayerRoom().getFurnitures().length;i++){
-            phrase += "- " + game.getPlayerRoom().getFurnitures()[i].getName();
+            phrase += "- " + game.getPlayerRoom().getFurnitures()[i].getName()+"\n";
         }
     }
     if(game.getPlayerRoom().getListObj().length>0){
-        phrase += "You can see some objects in the room : ";
+        phrase += "You can see some objects in the room :\n";
         for(let i=0;i<game.getPlayerRoom().getListObj().length;i++){
-            phrase += "- "+ game.getPlayerRoom().getListObj()[i].getName();
+            phrase += "- "+ game.getPlayerRoom().getListObj()[i].getName()+"\n";
         }
     }
     if(game.getPlayerRoom().getNorth()!="")
-        phrase += "There is something north. ";
+        phrase += "There is a way north.\n";
     if(game.getPlayerRoom().getSouth()!="")
-        phrase += "A corridor is going to the south. ";
+        phrase += "A corridor is going from the south.\n";
     if(game.getPlayerRoom().getWest()!="")
-        phrase += "You can see an entry on the west. ";
+        phrase += "You can see an entry on the west.\n";
     if(game.getPlayerRoom().getEast()!="")
         phrase += "You can go to the east, there is another room.";
     return phrase;
@@ -407,12 +422,21 @@ function dispFurnitureInfo(txt){
     for(let i=0;i<game.getPlayerRoom().getFurnitures().length;i++){
         if(game.getPlayerRoom().getFurnitures()[i].getName()==txt){
             for(let j=0;j<game.getPlayerRoom().getFurnitures()[i].getListObj().length;j++){
-                phrase += "- "+game.getPlayerRoom().getFurnitures()[i].getListObj()[j].getName()+ "\n";
+                phrase += "- "+game.getPlayerRoom().getFurnitures()[i].getListObj()[j].getName()+ "\r\n";
             }
             return phrase;
         }
     }
     return null;
+}
+
+function addSomeTextLine(taPhrase){
+    var node = document.createElement("p");
+    node.setAttribute("id","goToLine");
+    var textnode = document.createTextNode(taPhrase);
+    node.style.fontFamily = "Orbitron";
+    node.appendChild(textnode);
+    document.getElementById("text-dis").appendChild(node);
 }
 
 function addSomeText(taPhrase){
