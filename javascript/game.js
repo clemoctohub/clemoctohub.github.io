@@ -1,6 +1,5 @@
 class Game{
     #player;
-    #alien;
     #room = [];
     #etape;
     constructor(name,gender){

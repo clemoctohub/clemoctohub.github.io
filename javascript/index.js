@@ -1,4 +1,6 @@
 var game;
+var commande = [];
+let numCom;
 
 function start(){
     const tokens = window.location.search.split('&');
@@ -8,11 +10,30 @@ function start(){
     game.addObjetPlayer(new Key(11,"SAS_key","Outside",0,"You use the key to enter in the base. The decompression is good. Go and explore the base",true));
 }
 
+function useCommandeTools(signe){
+    if(signe=="-"){
+        console.log("-");
+        if(commande.length>0 && numCom>=0)
+            document.getElementById("texte").value = commande[numCom];
+        numCom--;
+    }
+    else if(signe=="+"){
+        if(commande.length>0 && numCom<commande.length)
+            document.getElementById("texte").value = commande[numCom];
+        numCom++;
+    }
+    if(numCom<0)
+        numCom=0;
+    else if(numCom>commande.length-1)
+        numCom=commande.length-1;
+}
+
 function updateScreen(texte){
     addSomeText("> "+texte);
     document.getElementById("texte").value = "";
     const txt = texte.split(' ');
-
+    commande.push(texte);
+    numCom = commande.length-1;
     switch(txt[0].toLowerCase()){
         case "look":
             addSomeTextLine(dispInfo());
@@ -256,6 +277,13 @@ function updateScreen(texte){
             else if(game.getEtape()<2){
                 addSomeText("You have to repair the Robot")
             }
+            else if(txt[1]=="Robot" && txt[2]==undefined){
+                addSomeTextLine(`Hi ! I'm ready to help what would you like to know ?\nYou can ask me about this topics :\n
+                - name,\n
+                - origin,\n
+                - dairy,\n
+                - alien`);
+            }
             else if(txt[1]=="Robot" && txt[2].toLowerCase()=="name"){
                 addSomeText("My name is Jarvis. May I help you ?");
             }
@@ -267,13 +295,6 @@ function updateScreen(texte){
             }
             else if(txt[1]=="Robot" && txt[2].toLowerCase()=="alien"){
                 addSomeText("Here are the information entered about 'alien' topic : Discovered two months ago. The specimen was very little but it started to grow very fast here. It started to create viscous liquid. It is now 2 meters high we secured it in this lab. He is very excited or angry. We have to be careful. It seems to want to eat our food. He gives off a lot of heat. The heat detector tool should find it. He has a hit on the chest so he is very vulnerable contrary to its head which is very solid.");
-            }
-            else if(txt[1]=="Robot" && txt[2]==undefined){
-                addSomeTextLine(`Hi ! I'm ready to help what would you like to know ?\nYou can ask me about this topics :\n
-                - name,\n
-                - origin,\n
-                - dairy,\n
-                - alien`);
             }
             else{
                 addSomeText("Sorry I didn't undertand your question.");

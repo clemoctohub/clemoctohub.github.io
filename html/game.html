@@ -16,14 +16,14 @@
     <body>
         <div>
             <div id="timer">
-                    <p>00:00</p>
+                <p>00:00</p>
             </div>
             <div id="text-dis">
                 <p></p>
             </div>
             <div class="main-disp">
                 <p id="smt">></p>
-                <input id="texte" type="text" name="texte"/>
+                <input id="texte" type="text" name="texte" autocomplete="off"/>
                 <button id="submitButton" onClick="updateScreen(document.getElementById('texte').value);">Enter</button>
             </div>
         </div>
@@ -33,6 +33,14 @@
             if (event.keyCode === 13) {
                 event.preventDefault();
     	        document.getElementById("submitButton").click();
+            }
+            else if(event.keyCode === 38){
+                event.preventDefault();
+                useCommandeTools("-");
+            }
+            else if(event.keyCode === 40){
+                event.preventDefault();
+                useCommandeTools("+");
             }
         });
         var intervalId = window.setInterval(function(){
@@ -56,8 +64,45 @@
         }, 1000);
         const tokens = window.location.search.split('&');
         let name = tokens[0].substring(12);
-        addSomeText("Welcome New Adventurer !");
-        addSomeText("In a very distant future, humanity is exploring potential habitable planets through thousands of galaxies.\nOn the planet XF606-A, a scientific research team finds out that there is alien life. \nThey are very excited to be able to study one of the creatures. \nTwo weeks after the first discovery, they catch one alien and bring it back to their base - a little living quarter adapted to human conditions on the planet XF606-A. They record the capture in the database of the base. \nThree days after their capture, the scientists stop sending any communication. \nThey don't answer any call, cannot be contacted and don't do the week’s summary video of discovery they usually do. \nThe SLC (space life company) which oversees this kind of mission, sends you, '"+ name +"' to the base on the planet XF606-A to find out what happened.");
-        addSomeText("Enter a command or tap help for any help");
+
+        var aText = new Array(
+        "Welcome New Adventurer !",
+        "In a very distant future, humanity is exploring potential habitable planets through thousands of galaxies.\nOn the planet XF606-A, a scientific research team finds out that there is alien life. \nThey are very excited to be able to study one of the creatures. \nTwo weeks after the first discovery, they catch one alien and bring it back to their base - a little living quarter adapted to human conditions on the planet XF606-A. They record the capture in the database of the base. \nThree days after their capture, the scientists stop sending any communication. \nThey don't answer any call, cannot be contacted and don't do the week’s summary video of discovery they usually do. \nThe SLC (space life company) which oversees this kind of mission, sends you, '"+ name +"' to the base on the planet XF606-A to find out what happened."
+        );
+        var iSpeed = 20;
+        var iIndex = 0;
+        var iArrLength = aText[0].length;
+        var iScrollAt = 20;
+
+        var iTextPos = 0;
+        var sContents = '';
+        var iRow;
+
+        function typewriter()
+        {
+            sContents =  ' ';
+            iRow = Math.max(0, iIndex-iScrollAt);
+            var destination = document.getElementById("text-dis");
+            
+            while ( iRow < iIndex ) {
+                sContents += aText[iRow++] + '<br />';
+            }
+            destination.innerHTML = sContents + aText[iIndex].substring(0, iTextPos) + "|";
+            if ( iTextPos++ == iArrLength ) {
+                iTextPos = 0;
+                iIndex++;
+                if ( iIndex != aText.length ) {
+                    iArrLength = aText[iIndex].length;
+                    setTimeout("typewriter()", 500);
+                }
+            } else{
+                setTimeout("typewriter()", iSpeed);
+            }
+        }
+        typewriter();
+        setTimeout(function(){
+            addSomeText("Enter a command or tap help for any help");
+        },23500);
+        
     </script>
 </html>
