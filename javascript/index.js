@@ -203,8 +203,8 @@ function updateScreen(texte){
             if(game.getPlayerObjets().length>0){
                 for(let i=0;i<game.getPlayerObjets().length;i++){
                     phrase += "- "+game.getPlayerObjets()[i].getName();
-                    if(i<i<game.getPlayerObjets().length-1)
-                        phrase+",";
+                    if(i<game.getPlayerObjets().length-1)
+                        phrase+", ";
                 }
                 addSomeText(phrase);
             }
@@ -248,7 +248,10 @@ function updateScreen(texte){
                     addSomeText("There is no such furniture here");
                 }
                 else{
-                    addSomeText("You inspect "+txt[1]+ ". You can see "+sentence);
+                    if(sentence.length>0)
+                        addSomeText("You inspect "+txt[1]+ ". You can see "+sentence);
+                    else
+                        addSomeText("You inspect "+txt[1]+ ". There are nothing there");
                 }
             }
             break;
@@ -443,7 +446,7 @@ function dispFurnitureInfo(txt){
     for(let i=0;i<game.getPlayerRoom().getFurnitures().length;i++){
         if(game.getPlayerRoom().getFurnitures()[i].getName()==txt){
             for(let j=0;j<game.getPlayerRoom().getFurnitures()[i].getListObj().length;j++){
-                phrase += "- "+game.getPlayerRoom().getFurnitures()[i].getListObj()[j].getName()+ "\r\n";
+                phrase += "- "+game.getPlayerRoom().getFurnitures()[i].getListObj()[j].getName()+ " \r\n";
             }
             return phrase;
         }
