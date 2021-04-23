@@ -275,7 +275,7 @@ function updateScreen(texte){
                 addSomeText("This person doesn't exist here");
             }
             else if(game.getEtape()<2){
-                addSomeText("You have to repair the Robot")
+                addSomeText("The Robot is not working. Find a graphic card to repair it.");
             }
             else if(txt[1]=="Robot" && txt[2]==undefined){
                 addSomeTextLine(`Hi ! I'm ready to help what would you like to know ?\nYou can ask me about this topics :\n
